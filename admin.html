@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Configuracion inicial de la página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Panel de administración: moderación de reseñas y publicación de noticias.">
+  <title>Administración | GameVault</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Barra superior -->
+  <header class="encabezado">
+    <!-- Logo y nombre de la página -->
+    <a class="marca" href="index.html"><img src="img/logo.svg" alt="" width="36" height="36">GameVault</a>
+    <!-- Menú hamburguesa -->
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">☰ Menú</button>
+    <!-- Menú de navegación entre las páginas -->
+    <nav aria-label="Navegación principal">
+      <ul class="menu" id="menu-principal">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Catálogo</a></li>
+        <li><a href="noticias.html">Noticias</a></li>
+        <li><a href="resenas.html">Reseñas</a></li>
+        <li><a href="biblioteca.html">Biblioteca</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="login.html" class="entrar">Iniciar sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main data-requiere="admin">
+    <!-- Encabezado de la página -->
+    <section aria-labelledby="t-adm">
+      <h1 id="t-adm">Panel de administración</h1>
+      <aside class="aviso-acceso" aria-label="Requisito de acceso">
+        <strong>Solo para administradores.</strong> Desde aquí se revisan las reseñas, se añaden juegos y se publican noticias.
+      </aside>
+    </section>
+
+    <!-- Sección para moderación de reseñas -->
+    <section aria-labelledby="t-mod">
+      <h2 id="t-mod">Moderar reseñas</h2>
+      <p>Revisa las reseñas publicadas y elimina las que tengan contenido inapropiado.</p>
+      <ul class="catalogo lista-admin" id="lista-admin-resenas"></ul>
+      <p id="admin-vacio" hidden>No hay reseñas para moderar.</p>
+    </section>
+
+    <!-- Sección para añadir juegos al catálogo -->
+    <section aria-labelledby="t-addjuego">
+      <h2 id="t-addjuego">Añadir juego al catálogo</h2>
+      <form class="formulario" id="form-juego" action="#" method="post" novalidate>
+        <label for="juego-titulo">Título</label>
+        <input type="text" id="juego-titulo" name="titulo" required maxlength="80">
+        <label for="juego-genero">Género</label>
+        <select id="juego-genero" name="genero" required>
+          <option value="">Selecciona un género</option>
+        </select>
+        <label for="juego-estudio">Estudio</label>
+        <input type="text" id="juego-estudio" name="estudio" required maxlength="60">
+        <label for="juego-anio">Año de lanzamiento</label>
+        <input type="number" id="juego-anio" name="anio" required min="1970" max="2100">
+        <label for="juego-plataformas">Plataformas</label>
+        <input type="text" id="juego-plataformas" name="plataformas" required maxlength="80" placeholder="Ej. PC, PlayStation, Xbox">
+        <label for="juego-nota">Nota (0 a 10)</label>
+        <input type="number" id="juego-nota" name="nota" required min="0" max="10" step="0.1">
+        <label for="juego-desc">Descripción</label>
+        <textarea id="juego-desc" name="descripcion" rows="4" required minlength="20" maxlength="300"></textarea>
+        <label for="juego-imagen">URL de la imagen</label>
+        <input type="url" id="juego-imagen" name="imagen" required placeholder="https://ejemplo.com/portada.jpg">
+        <label for="juego-tienda">URL de la tienda oficial</label>
+        <input type="url" id="juego-tienda" name="tienda" required placeholder="https://store.steampowered.com/app/...">
+        <button class="boton" type="submit">Añadir juego</button>
+      </form>
+    </section>
+
+    <!-- Sección para publicación de noticias -->
+    <section aria-labelledby="t-pubnot">
+      <h2 id="t-pubnot">Publicar una noticia</h2>
+      <form class="formulario" id="form-noticia" action="#" method="post" novalidate>
+        <label for="not-titulo">Título</label>
+        <input type="text" id="not-titulo" name="titulo" required minlength="5" maxlength="100">
+        <label for="not-cat">Categoría</label>
+        <select id="not-cat" name="categoria" required>
+          <option value="">Selecciona una categoría</option>
+          <option value="industria">Industria</option>
+          <option value="guias">Guías</option>
+          <option value="comunidad">Comunidad</option>
+          <option value="resenas">Reseñas</option>
+        </select>
+        <label for="not-texto">Contenido</label>
+        <textarea id="not-texto" name="contenido" rows="7" required minlength="30" maxlength="2000"></textarea>
+        <button class="boton" type="submit">Publicar noticia</button>
+      </form>
+    </section>
+  </main>
+  <footer class="pie">
+    <!-- Derechos de autor -->
+    <p>© 2026 GameVault. José Israel García Pacheco y Gerardo Rebollar Mondragón.</p>
+    <!-- Enlaces a las otras páginas -->
+    <nav aria-label="Enlaces del pie de página">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Catálogo</a></li>
+        <li><a href="noticias.html">Noticias</a></li>
+        <li><a href="resenas.html">Reseñas</a></li>
+        <li><a href="biblioteca.html">Biblioteca</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="login.html">Iniciar sesión</a></li>
+        <li><a href="admin.html">Administración</a></li>
+      </ul>
+    </nav>
+  </footer>
+  <script src="js/juegos.js" defer></script>
+  <script src="js/cuentas.js" defer></script>
+  <script src="js/datos.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

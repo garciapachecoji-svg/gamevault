@@ -1,0 +1,27 @@
+# Levanta el sitio (PHP + Apache) y MySQL con un solo comando:  docker compose up --build
+# Después abre http://localhost:8080
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_NAME: gamevault
+      DB_USER: gamevault
+      DB_PASS: gamevault
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: gamevault
+      MYSQL_USER: gamevault
+      MYSQL_PASSWORD: gamevault
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      # MySQL ejecuta este archivo la primera vez que se crea la base de datos
+      - ./database/gamevault.sql:/docker-entrypoint-initdb.d/gamevault.sql
+      - dbdatos:/var/lib/mysql
+volumes:
+  dbdatos:
